@@ -1,10 +1,15 @@
 /**
  * @name TooLewdForDiscord
- * @author cozy fun#6288
- * @version 0.0.2
  * @description You and I both know that this isn't going to be used for educational purposes...
- * @source null
- * @updateUrl null
+ * @version 0.0.3
+ * 
+ * @author bluebewwy
+ * @authorId 268199041542651904
+ * @authorLink https://github.com/bluebewwy
+ * @invite NCxZSpMsKM
+ * 
+ * @source https://github.com/bluebewwy/betterdiscord/TooLewdForDiscord.plugin.js
+ * @updateUrl https://raw.githubusercontent.com/bluebewwy/betterdiscord/main/TooLewdForDiscord.plugin.js
  */
 
 /*@cc_on
@@ -33,51 +38,38 @@
 var TooLewdForDiscord = (() => {
 var out = { tlfd_log: (message) => { console.log(`%cTooLewdForDiscord$%c${message}`, `color:#FFC0CB;font-weight:bold`, "") } }
 
-var init = false;
+var loaded = false;
 
 function tlfd_init(final) {
+    loaded = true;
     out.tlfd_log(" {INIT}: Initialised.");
     return 0; // Success
 }
 
 function tlfd_exit(final) {
-    init = false;
+    loaded = false;
     out.tlfd_log(" {INIT}: Exit.");
     return 0;
 }
 
-function tlfd_update(state) {
+function tlfd_update() {
     var currentUser = BdApi.findModuleByProps("getCurrentUser").getCurrentUser();
     if (typeof currentUser === "undefined") return;
-    currentUser.nsfwAllowed = state;
+    currentUser.nsfwAllowed = loaded;
 }
 
 function tlfd_start() {
-    if (!init && tlfd_init(true) !== 0) return;
+    if (!loaded && tlfd_init(true) !== 0) return;
 
-    tlfd_update(init);
+    tlfd_update();
 }
 
 function tlfd_stop() {
-    if (!init) return;
+    if (!loaded) return;
 
-    init = false;
-    tlfd_update(false);
+    loaded = false;
+    tlfd_update();
     tlfd_exit(true);
-}
-
-function tlfd_load() {
-    init = true
-    tlfd_start();
-}
-
-function tlfd_unload() {
-    init = false
-    tlfd_stop();
-}
-
-function tlfd_switch() {
-    tlfd_update(init);
 }
 
 return function() { return {
@@ -85,14 +77,11 @@ return function() { return {
     // Functions used by the BetterDiscord API for displaying plugins to the user.
     getName       : () => "TooLewdForDiscord",
     getDescription: () => "You and I both know that this isn't going to be used for the most educational purposes...",
-    getVersion    : () => "0.0.2",
-    getAuthor     : () => "cozy fun#6288",
+    getVersion    : () => "0.0.3",
+    getAuthor     : () => "bluebewwy",
 
     start: tlfd_start,
-    stop: tlfd_stop,
-    load: tlfd_load,
-    unload: tlfd_unload,
-    onSwitch: tlfd_switch
+    stop: tlfd_stop
 }};
 
 })();
