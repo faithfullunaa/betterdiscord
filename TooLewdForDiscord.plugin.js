@@ -1,15 +1,14 @@
 /**
  * @name TooLewdForDiscord
  * @description You and I both know that this isn't going to be used for educational purposes...
- * @version 0.0.3
+ * @version 0.0.4
  * 
- * @author bluebewwy
+ * @author lewdcat
  * @authorId 268199041542651904
- * @authorLink https://github.com/bluebewwy
- * @invite NCxZSpMsKM
+ * @authorLink https://github.com/lewwdcat
  * 
- * @source https://github.com/bluebewwy/betterdiscord/TooLewdForDiscord.plugin.js
- * @updateUrl https://raw.githubusercontent.com/bluebewwy/betterdiscord/main/TooLewdForDiscord.plugin.js
+ * @source https://github.com/lewwdcat/betterdiscord/TooLewdForDiscord.plugin.js
+ * @updateUrl https://raw.githubusercontent.com/lewwdcat/betterdiscord/main/TooLewdForDiscord.plugin.js
  */
 
 /*@cc_on
@@ -77,8 +76,8 @@ return function() { return {
     // Functions used by the BetterDiscord API for displaying plugins to the user.
     getName       : () => "TooLewdForDiscord",
     getDescription: () => "You and I both know that this isn't going to be used for the most educational purposes...",
-    getVersion    : () => "0.0.3",
-    getAuthor     : () => "bluebewwy",
+    getVersion    : () => "0.0.4",
+    getAuthor     : () => "lewdcat",
 
     start: tlfd_start,
     stop: tlfd_stop
